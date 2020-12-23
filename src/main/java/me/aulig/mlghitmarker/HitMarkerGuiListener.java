@@ -132,7 +132,7 @@ public class HitMarkerGuiListener {
                         if (useMemeSoundEffects && finalIsTripleKill) {
                             resource = getClass().getResource("/assets/minecraft/triple.wav");
                         } else if (useMemeSoundEffects && isKill && ThreadLocalRandom.current().nextInt(0, 20) == 0) {
-                            resource = getClass().getResource("/assets/minecraft/cenal.wav");
+                            resource = getClass().getResource("/assets/minecraft/cena.wav");
                         } else {
                             resource = getClass().getResource("/assets/minecraft/hit.wav");
                         }

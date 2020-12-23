@@ -80,7 +80,7 @@ public class Main extends LabyModAddon {
         SliderElement hitMarkerSizeSlider = new SliderElement("HitMarker Size", this,
                 new ControlElement.IconData(Material.ARROW), "hitMarkerSize", guiListener.getHitMarkerSize());
 
-        hitMarkerSizeSlider.setRange(1, 50);
+        hitMarkerSizeSlider.setRange(1, 100);
 
         hitMarkerSizeSlider.addCallback(new Consumer<Integer>() {
             @Override
