@@ -1,0 +1,10 @@
+{
+  "uuid": "%uuid%",
+  "name": "MLG Hitmarker",
+  "mainClass": "me.aulig.mlghitmarker.Main",
+  "description": "Adds an MLG hitmarker whenever you hit an entity.",
+  "version": 1,
+  "author": "Aulig",
+  "category": 1,
+  "icon": "https://i.imgur.com/Y8cQAqz.png"
+}
