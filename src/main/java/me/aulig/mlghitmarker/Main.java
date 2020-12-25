@@ -92,7 +92,7 @@ public class Main extends LabyModAddon {
         settingsElementList.add(hitMarkerSizeSlider);
 
 
-        SliderElement hitMarkerVolumeSlider = new SliderElement("HitMarker Volume", this,
+        SliderElement hitMarkerVolumeSlider = new SliderElement("Sound Effect Volume", this,
                 new ControlElement.IconData(Material.NOTE_BLOCK), "hitMarkerVolume", guiListener.getHitMarkerVolume());
 
         hitMarkerVolumeSlider.setRange(1, 100);

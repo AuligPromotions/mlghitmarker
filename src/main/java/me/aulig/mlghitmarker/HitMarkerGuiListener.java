@@ -101,7 +101,6 @@ public class HitMarkerGuiListener {
 
                 lastKills.remove(0);
                 isTripleKill = lastKills.get(2) - lastKills.get(0) < 7000;
-                System.out.println(lastKills.get(2) - lastKills.get(0));
 
                 if (isTripleKill) {
 
@@ -147,7 +146,8 @@ public class HitMarkerGuiListener {
                         clip.start();
                     } catch (Exception e) {
 
-                        System.out.println(e.getMessage());
+                        System.err.println("Error while trying to play sound effect: ");
+                        e.printStackTrace();
                     }
                 }
             });
@@ -155,7 +155,8 @@ public class HitMarkerGuiListener {
 
         } catch (Exception e) {
 
-            System.out.println(e.getMessage());
+            System.err.println("Error while starting thread to play sound effect: ");
+            e.printStackTrace();
         }
     }
 
