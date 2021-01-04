@@ -100,6 +100,10 @@ public class HitMarkerGuiListener {
             if (lastKills.size() > 3) {
 
                 lastKills.remove(0);
+            }
+
+            if (lastKills.size() > 2) {
+
                 isTripleKill = lastKills.get(2) - lastKills.get(0) < 7000;
 
                 if (isTripleKill) {
