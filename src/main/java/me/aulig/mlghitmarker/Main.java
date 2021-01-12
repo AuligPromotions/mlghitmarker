@@ -37,7 +37,16 @@ public class Main extends LabyModAddon {
 
                 if (entity instanceof EntityLivingBase) {
 
-                    UUID entityUUID = entity.getPersistentID();
+                    UUID entityUUID;
+
+                    try {
+                        entityUUID = entity.getPersistentID();
+                    }
+                    catch (NoSuchMethodError nsme) {
+
+                        entityUUID = entity.getUniqueID();
+                    }
+
                     float newHp = ((EntityLivingBase) entity).getHealth();
                     Float lastHp = lastHpMap.get(entityUUID);
 
