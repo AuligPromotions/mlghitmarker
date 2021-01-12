@@ -2,9 +2,7 @@ package me.aulig.mlghitmarker;
 
 import io.netty.util.internal.ThreadLocalRandom;
 import net.labymod.api.LabyModAddon;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -18,9 +16,7 @@ import java.util.List;
 
 public class HitMarkerGuiListener {
 
-    private final ResourceLocation markerTexture = new ResourceLocation("marker.png");
-
-    private LabyModAddon addon;
+    private final LabyModAddon addon;
 
     private int hitMarkerSize;
     // time to display marker in milliseconds
@@ -35,7 +31,7 @@ public class HitMarkerGuiListener {
     private boolean randomize;
     private int randomOffset = 0;
 
-    private List<Long> lastKills = new ArrayList<Long>();
+    private final List<Long> lastKills = new ArrayList<Long>();
 
     HitMarkerGuiListener(LabyModAddon addon, int hitMarkerSize, int hitMarkerVolume, boolean randomize, int hitMarkerLength, boolean useMemeSoundEffects) {
 
@@ -133,11 +129,11 @@ public class HitMarkerGuiListener {
                         URL resource;
 
                         if (useMemeSoundEffects && finalIsTripleKill) {
-                            resource = getClass().getResource("/assets/minecraft/triple.wav");
+                            resource = getClass().getResource("/assets/minecraft/sounds/triple.wav");
                         } else if (useMemeSoundEffects && isKill && ThreadLocalRandom.current().nextInt(0, 20) == 0) {
-                            resource = getClass().getResource("/assets/minecraft/cena.wav");
+                            resource = getClass().getResource("/assets/minecraft/sounds/cena.wav");
                         } else {
-                            resource = getClass().getResource("/assets/minecraft/hit.wav");
+                            resource = getClass().getResource("/assets/minecraft/sounds/hit.wav");
                         }
 
                         AudioInputStream audioIn = AudioSystem.getAudioInputStream(resource);
@@ -168,7 +164,8 @@ public class HitMarkerGuiListener {
     public void onTick(TickEvent.RenderTickEvent event) {
 
         if (System.currentTimeMillis() < hideAt) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(markerTexture);
+            addon.getApi().getDrawUtils().bindTexture("textures/hitmarkercross.png");
+
             ScaledResolution scaledResolution = addon.getApi().getDrawUtils().getScaledResolution();
 
             double posX = scaledResolution.getScaledWidth() / 2d - (hitMarkerSize / 2d);

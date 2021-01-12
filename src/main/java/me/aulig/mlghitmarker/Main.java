@@ -116,7 +116,7 @@ public class Main extends LabyModAddon {
         hitMarkerLengthSlider.addCallback(new Consumer<Integer>() {
             @Override
             public void accept(Integer newHitMarkerVolume) {
-                guiListener.setHitMarkerVolume(newHitMarkerVolume);
+                guiListener.setHitMarkerLength(newHitMarkerVolume);
             }
         });
 
@@ -148,6 +148,4 @@ public class Main extends LabyModAddon {
 
         settingsElementList.add(memeSoundEffectsToggle);
     }
-
-
 }
