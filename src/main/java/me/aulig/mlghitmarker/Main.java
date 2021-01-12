@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Main extends LabyModAddon {
 
@@ -22,6 +23,9 @@ public class Main extends LabyModAddon {
     static final boolean HIT_MARKER_DEFAULT_RANDOMIZE = true;
     static final boolean USE_MEME_SOUND_EFFECTS_DEFAULT = true;
 
+    // maps entity uuids to their last recorded health
+    static MaxSizeHashMap<UUID, Float> lastHpMap = new MaxSizeHashMap<UUID, Float>(256);
+
     @Override
     public void onEnable() {
 
@@ -31,14 +35,25 @@ public class Main extends LabyModAddon {
             @Override
             public void accept(Entity entity) {
 
-                boolean isKill = false;
-
                 if (entity instanceof EntityLivingBase) {
 
-                    isKill = ((EntityLivingBase) entity).getHealth() == 0;
-                }
+                    UUID entityUUID = entity.getPersistentID();
+                    float newHp = ((EntityLivingBase) entity).getHealth();
+                    Float lastHp = lastHpMap.get(entityUUID);
 
-                guiListener.showHitMarker(isKill);
+                    if (lastHp == null) {
+
+                        lastHp = -1.0f;
+                    }
+
+                    // did the entities hp change?
+                    if (newHp != lastHp) {
+                        // -> show hitmarker, as entity took damage from attack
+                        lastHpMap.put(entityUUID, newHp);
+                        boolean isKill = ((EntityLivingBase) entity).getHealth() == 0;
+                        guiListener.showHitMarker(isKill);
+                    }
+                }
             }
         });
 
